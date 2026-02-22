@@ -3,7 +3,7 @@ let mouseDownLocationABS = new Vec()
 let fingerDistance = null
 let view = {zoom: 1, offset: new Vec(0,0), center: new Vec(0,0)}
 let screenCenter = new Vec(400,400)
-
+let lastclick = new Vec (0,0)
 
 function getViewXYfromScreenXY (pt) {
   return pt.subtract(screenCenter).scale(view.zoom).add(view.offset)
@@ -59,6 +59,7 @@ function drag (e) {
 function boardClick (event) {
   const clickLoc =  getViewXYfromScreenXY(new Vec(event.offsetX, event.offsetY))
   console.log("clickLoc", clickLoc);
+  lastclick = clickLoc
   drawScreen()
 }
 
@@ -125,6 +126,8 @@ function drawScreen() {
         ctx.fillRect(p.x, p.y, 10, 10)
     }
   }
+
+  ctx.fillText("x:" + lastclick.x + "y:" + lastclick.y, lastclick.x,  lastclick.y)
 
 //p => getScreenXYfromViewXY(p)).forEach(p => ctx.fillRect(p.x, p.y, 10, 10))
 
