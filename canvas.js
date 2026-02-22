@@ -1,7 +1,7 @@
 let mouseDownLocation = new Vec()
 let mouseDownLocationABS = new Vec()
 let fingerDistance = null
-let view = {zoom: 1, offset: new Vec(0,0), center: new Vec(500,0)}
+let view = {zoom: 1, offset: new Vec(0,0), center: new Vec(0,0)}
 let screenCenter = new Vec(400,400)
 
 
@@ -21,7 +21,7 @@ function scaleView (sc) {
 
 function translateView (dif) { 
   const newOffset = view.offset.add(dif.scale(view.zoom))
-  view.offset = newOffset.bounds(screenCenter.scale(view.zoom))
+  view.offset = newOffset.bounds(screenCenter.scale(1/view.zoom))
 }
 
 function mousedown (event) {
@@ -112,16 +112,16 @@ function drawScreen() {
 
 
   const ctx = document.body.querySelector('#board').getContext('2d')
-  ctx.clearRect(-99999, -99999, 199999, 199999)
- // ctx.fillStyle = "green";
-  //ctx.fillRect(100,100,200,200)
+  ctx.clearRect(-99999, -99999, 199999, 199999) 
+  ctx.setTransform(1, 0,0, 1, 0, 0)
+  ctx.setTransform(1/view.zoom, 0,0, 1/view.zoom, - view.offset.x/view.zoom  + screenCenter.x,  - view.offset.y/view.zoom + screenCenter.y)
+
   ctx.fillStyle = "white";
 
   for(var i = -500; i <= 500; i += 100){
       for(var j = -500; j <= 500; j += 100){
         // console.log(i);
         p = new Vec(i,j)
-        p = getScreenXYfromViewXY(p)
         ctx.fillRect(p.x, p.y, 10, 10)
     }
   }
