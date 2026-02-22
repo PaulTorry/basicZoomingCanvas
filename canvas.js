@@ -126,8 +126,8 @@ function drawScreen() {
         ctx.fillRect(p.x, p.y, 10, 10)
     }
   }
-
-  ctx.fillText("x:" + lastclick.x + "y:" + lastclick.y, lastclick.x,  lastclick.y)
+  ctx.font = "30px serif";
+  ctx.fillText("x:" + Math.round(lastclick.x) + "y:" + Math.round(lastclick.y), lastclick.x,  lastclick.y)
 
 //p => getScreenXYfromViewXY(p)).forEach(p => ctx.fillRect(p.x, p.y, 10, 10))
 
