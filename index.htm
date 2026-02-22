@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Canvas Test</title>
+  <style>  
+  body, html {height:100%; width:100%; margin:1px;}
+  div.wrap {height:100%; width:100%; overflow:hidden;}
+  body {background-color: #101010}
+  body {overflow: hidden; }
+  </style>
+
+<meta name="viewport" content="width=device-width,
+    initial-scale=0.45, maximum-scale=1, user-scalable=0"/>
+  <link rel="stylesheet" href="" type="text/css"/>
+  </head>
+<body>
+
+
+
+<div class=wrap>
+<canvas id="board" width="80" height="80" style="border:1px solid #5f3333;"></canvas>
+
+</div>
+</body>
+
+<script src="./Vec.js"></script>
+<script src="./canvas.js"></script>
+
+
+<script>
+document.body.querySelector("#board").addEventListener("click", boardClick) ;
+document.body.querySelector("#board").addEventListener("mousedown", mousedown);
+document.body.querySelector("#board").addEventListener("wheel", mouseWheel);
+document.body.querySelector("#board").addEventListener("touchstart", touchstart);
+
+window.onload = () => {
+  window.onresize = resizeScreen
+  resizeScreen()
+  drawScreen(); 
+}
+
+</script>
+</html>
