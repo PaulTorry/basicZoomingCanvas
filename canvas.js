@@ -76,7 +76,7 @@ function removeTouchmove (event) {
   document.getElementById('board').removeEventListener('touchend', removeTouchmove)
 }
 
-function touchdrag (event, view = views.spaceView) {
+function touchdrag (event) {
   event.preventDefault(); event.stopPropagation()
 
   const t1 = new Vec(event.touches[0].pageX, event.touches[0].pageY)
